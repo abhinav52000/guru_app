@@ -1,40 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/route_manager.dart';
-import 'config/routes/app_routes.dart';
-import 'config/routes/app_screens.dart';
-import 'config/theme/app_theme.dart';
-import 'constants/string_constants.dart';
+import 'package:guru_app/constants/images_path.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Color(0xFF000000),
-    ),
-  );
-  await Future.delayed(const Duration(seconds: 2));
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]).then((_) {
-    runApp(const MyApp());
-  });
+main() async {
+  await Future.delayed(const Duration(seconds: 1));
+
+  runApp(const HomeScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    var webPageUrl = 'https://gamekaguru.com';
+    launchUrl(
+      Uri.parse(webPageUrl),
+      mode: LaunchMode.externalApplication,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: StringConstants.appName,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.light,
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.homeScreen,
-      getPages: AppScreens.list,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 16.0,
+          ),
+          child: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Image.asset(
+                ImagesPath.appLogo,
+                height: 280,
+                width: 280,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

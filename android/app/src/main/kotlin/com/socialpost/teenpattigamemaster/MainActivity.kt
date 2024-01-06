@@ -1,4 +1,4 @@
-package com.amvar.guru_app
+package com.socialpost.teenpattigamemaster
 
 import io.flutter.embedding.android.FlutterActivity
 

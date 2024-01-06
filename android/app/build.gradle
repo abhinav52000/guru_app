@@ -33,7 +33,7 @@ def keystoreProperties = new Properties()
    }
 
 android {
-    namespace "com.amvar.guru_app"
+    namespace "com.socialpost.teenpattigamemaster"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -52,7 +52,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.amvar.guru_app"
+        applicationId "com.socialpost.teenpattigamemaster"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
@@ -72,6 +72,9 @@ android {
    buildTypes {
        release {
            signingConfig signingConfigs.release
+           minifyEnabled true
+           shrinkResources true
+           
        }
    }
 }
